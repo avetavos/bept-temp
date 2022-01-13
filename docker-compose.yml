@@ -6,9 +6,8 @@ services:
         image: nestjs-api-dev:1.0.0
         build:
             context: .
-            target: development
             dockerfile: ./Dockerfile
-        command: npm run start:debug
+        command: yarn start
         ports:
             - 3000:3000
             - 9229:9229
