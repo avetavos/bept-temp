@@ -1,16 +1,13 @@
-FROM node:12.19.0-alpine3.9
+FROM node:14-alpine
 
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+WORKDIR /workspace
 
-WORKDIR /usr/src/app
+COPY package.json yarn.lock /workspace/
 
-COPY package*.json ./
-
-RUN npm install --only=production
+RUN yarn
 
 COPY . .
 
-COPY /usr/src/app/dist ./dist
+RUN yarn build
 
-CMD ["node", "dist/main"]
+CMD ["yarn", "start"]
